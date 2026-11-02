@@ -24,15 +24,22 @@ public class BarrelPivot : MonoBehaviour
     public void StartRotationTowards(Quaternion rotation)
     {
         targetRotation = rotation;
+        StopAllCoroutines();
         StartCoroutine("RotateTowards");
     }
 
     private IEnumerator RotateTowards()
     {
         // constant turn rate
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-        
-        yield return new WaitForEndOfFrame();
-        
+        while (transform.rotation != targetRotation)
+        {
+            print(transform.rotation);
+            transform.rotation =
+                Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+
+            yield return new WaitForEndOfFrame();
+        }
+        print($"made it past: {transform.rotation}");
+        print("made it");
     }
 }
