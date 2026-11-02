@@ -1,0 +1,14 @@
+using UnityEngine;
+
+/// <summary>
+/// Attach this to every enemy. This class derives from Entity but has little abstraction.
+/// </summary>
+public class EnemyHealth: Entity
+{
+    public int maxHealth;
+    
+    void Awake()
+    {
+        healthController = new HealthComponent(maxHealth, HealthComponent.Team.ENEMY, gameObject);
+    }
+}
