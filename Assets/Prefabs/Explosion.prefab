@@ -146,6 +146,7 @@ MonoBehaviour:
   lifetime: 0.1
   targetRadius: 2
   radius: 0.5
+  explosionPower: 6
 --- !u!114 &962800788453766102
 MonoBehaviour:
   m_ObjectHideFlags: 0

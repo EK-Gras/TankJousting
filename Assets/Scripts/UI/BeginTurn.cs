@@ -42,5 +42,6 @@ public class BeginTurn : MonoBehaviour
                 GameManager.Instance.turnManager.TurnTrigger(TurnManager.TurnAction.LANDMINE, slider.value/4f);
                 break;
         }
+        _button.enabled = false;
     }
 }

@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
             case TurnManager.TurnAction.ANGLE:
                 if (startedLook) return;
                 Quaternion look = new Quaternion(0,0,actionFloat, 0);
+                print(look);
                 barrelPivot.StartRotationTowards(look);
                 startedLook = true;
                 break;

@@ -31,15 +31,15 @@ namespace UI
                     break;
                 case 1:
                     titleText.text = "barrel angle";
-                    minValueText.text = "0 degrees";
-                    maxValueText.text = "359 degrees";
-                    slider.maxValue = 359;
-                    slider.minValue = 0;
+                    minValueText.text = "-180 degrees";
+                    maxValueText.text = "180 degrees";
+                    slider.maxValue = 180;
+                    slider.minValue = -180;
                     _valueDepicted.setting = 1;
                     // keyword salad, but it's looking for the z rotation of the player's barrel
                     // to use as the starting value
                     slider.value = 
-                        GameManager.Instance.turnManager.playerRef.barrelPivot.transform.localRotation.eulerAngles.z;
+                        GameManager.Instance.turnManager.playerRef.barrelPivot.transform.localRotation.z;
                     turnButton.OnSettingChanged(1);
                     break;
                 case 2:
