@@ -7,7 +7,7 @@ public class BeginTurn : MonoBehaviour
     [SerializeField] Slider slider;
     [SerializeField] private float sliderSetting; 
     
-    private Button _button;
+    public Button _button;
 
     private void Awake()
     {

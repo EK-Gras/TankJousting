@@ -1,6 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 
 public class TurnManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class TurnManager : MonoBehaviour
     [Header("References")]
     [SerializeField] public Player playerRef;
     [SerializeField] public Enemy sceneEnemy;
+    [SerializeField] public GameObject turnPanel;
+    [SerializeField] public Button beginTurnButton;
     
     [Header("Turn Settings")]
     [SerializeField] float turnSpacing = 1f;
@@ -31,6 +34,7 @@ public class TurnManager : MonoBehaviour
         GameManager.Instance.turnManager = this;
         playerRef = FindAnyObjectByType<Player>();
         sceneEnemy = FindAnyObjectByType<Enemy>();
+        beginTurnButton = FindAnyObjectByType<BeginTurn>()._button;
     }
 
     private void Update()
@@ -55,5 +59,25 @@ public class TurnManager : MonoBehaviour
 
         playerRef.TakeAction(action, input);
     }
-    
+
+    public void EnemyTurnTrigger()
+    {
+        Time.timeScale = 1;
+        turns++;
+        turnBeingTaken = false;
+        nextTime = time + turnSpacing;
+
+        // TODO update to include enemy action choice, or leave to it in enemy class 
+        sceneEnemy.TakeTurn(Enemy.EnemyAction.MOVE);
+        turnPanel.SetActive(false);
+        StartCoroutine("EnemyTurn");
+        // find begin turn button and enable it once enemy takes their turn
+        beginTurnButton.enabled = true;
+    }
+
+    private IEnumerator EnemyTurn()
+    {
+        yield return new WaitForSeconds(1);
+        turnPanel.SetActive(true);
+    }
 }

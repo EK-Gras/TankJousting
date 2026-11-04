@@ -49,6 +49,14 @@ public class Player : MonoBehaviour
         {
             StartCoroutine("PlaceLandmine");
         }
+        
+        StartCoroutine("TurnTimer");
+    }
+
+    private IEnumerator TurnTimer()
+    {
+        yield return new WaitForSeconds(1);
+        GameManager.Instance.turnManager.EnemyTurnTrigger();
     }
 
     private IEnumerator PlaceLandmine()
