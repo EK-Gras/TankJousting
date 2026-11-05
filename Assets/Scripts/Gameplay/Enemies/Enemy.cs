@@ -5,16 +5,22 @@ using UnityEngine;
 
 public class Enemy: MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] Barrel barrel;
+    
     private EnemyHealth health;
     private Rigidbody2D rb;
     public bool takingTurn;
     
     bool directionLastMoved = true;
+    private bool turnEnder = false;
 
     public enum EnemyAction
     {
         MOVE,
-        ROTATE
+        ROTATE,
+        SHOOT,
+        IDLE
     }
 
     private EnemyAction _enemyAction;
@@ -43,15 +49,36 @@ public class Enemy: MonoBehaviour
                         rb.linearVelocity = Vector2.right * 10;
                     }
                     break;
+                case EnemyAction.SHOOT:
+                    if (!turnEnder)
+                    {
+                        barrel.ReadyFire();
+                        turnEnder = true;
+                    }
+                    break;
             }
         }
     }
 
-    public void TakeTurn(EnemyAction action)
+    public void TakeTurn(int turnNumber)
     {
         takingTurn = true;
-        // TODO decision tree code here to decide proper action
-
+        
+        EnemyAction action = EnemyAction.IDLE;
+        
+        // turret decision tree, add specific trees for specific enemies
+        // explanation: enemies take even numbered turns, so every other turn they take (%4), make them alternate btwn
+        // idle and shooting
+        switch (turnNumber%4)
+        {
+            case 0:
+                action = EnemyAction.IDLE;
+                break;
+            case 2:
+                action = EnemyAction.SHOOT;
+                break;
+        }
+        
         _enemyAction = action;
 
         StartCoroutine("TurnTimer");

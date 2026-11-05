@@ -35,11 +35,11 @@ public class BarrelPivot : MonoBehaviour
         
         if (targetRotation.z == 180 || targetRotation.z == -180)
         {
-           target = transform.rotation * Quaternion.Euler(0, 0, targetRotation.z*-1);
+           target = transform.rotation * Quaternion.Euler(0, 0, targetRotation.z);
         }
         else 
-            target = transform.rotation * Quaternion.Euler(0, 0, targetRotation.z);
-
+            target = transform.rotation * Quaternion.Euler(0, 0, targetRotation.z*-1);
+        
         
         
         while (timeElapsed < lerpDuration)

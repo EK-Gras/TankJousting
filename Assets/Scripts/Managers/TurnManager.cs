@@ -68,7 +68,7 @@ public class TurnManager : MonoBehaviour
         nextTime = time + turnSpacing;
 
         // TODO update to include enemy action choice, or leave to it in enemy class 
-        sceneEnemy.TakeTurn(Enemy.EnemyAction.MOVE);
+        sceneEnemy.TakeTurn(turns);
         turnPanel.SetActive(false);
         StartCoroutine("EnemyTurn");
         // find begin turn button and enable it once enemy takes their turn
