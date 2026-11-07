@@ -29,6 +29,16 @@ public class SceneTransitionManager : MonoBehaviour
     =====
     */
 
+    // Create as singleton
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void CreateInstance()
+    {
+        if (Instance != null) { return; }
+
+        GameObject managerObj = new GameObject("SceneTransitionManager");
+        managerObj.AddComponent<SceneTransitionManager>();
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
