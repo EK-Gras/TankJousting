@@ -1,0 +1,62 @@
+:root {
+}
+
+.upgrade_button {
+    width: auto;
+    height: auto;
+    flex-grow: 1;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    -unity-font-style: bold;
+    font-size: 40px;
+    -unity-text-align: middle-center;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-left-color: rgb(19, 60, 164);
+    border-right-color: rgb(19, 60, 164);
+    border-top-color: rgb(19, 60, 164);
+    border-bottom-color: rgb(19, 60, 164);
+    background-color: rgb(0, 0, 0);
+    color: rgb(26, 26, 26);
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(19, 60, 164);
+}
+
+.hp_button {
+}
+
+
+
+.upgrade_label {
+    font-size: 30px;
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.upgrade_label_container {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    width: 480px;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.upgrade_container {
+    flex-grow: 1;
+}
+
+.cursor {
+}

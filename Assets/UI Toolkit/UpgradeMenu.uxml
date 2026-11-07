@@ -1,0 +1,44 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/UpgradesStyleSheet.uss?fileID=7433441132597879392&amp;guid=4d304b33097627949af572cf7c88590c&amp;type=3#UpgradesStyleSheet"/>
+    <ui:VisualElement name="UpgradeBG" style="flex-grow: 1; background-color: rgb(19, 60, 164); justify-content: center; align-items: center;">
+        <ui:GroupBox style="align-self: center; align-items: center; flex-direction: row; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+            <ui:VisualElement name="Padding" style="flex-grow: 1; width: 250px; flex-shrink: 0; align-self: stretch;"/>
+            <ui:VisualElement name="UpgradeMenuContainer" style="flex-grow: 0; width: 800px; height: 800px; background-color: rgb(26, 26, 26); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
+                <ui:Label text="Upgrades Menu" style="-unity-font-definition: initial; -unity-font-style: bold; font-size: 70px; color: rgb(19, 60, 164); -unity-text-align: upper-center;"/>
+                <ui:VisualElement style="flex-grow: 0; height: 2px; background-color: rgb(19, 60, 164); margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;"/>
+                <ui:GroupBox name="UpgradesGroupBox" style="flex-grow: 1; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-direction: column; align-items: stretch; align-content: flex-start; align-self: auto;">
+                    <ui:GroupBox name="HPContainer" class="upgrade_container" style="flex-direction: row;">
+                        <ui:VisualElement name="VisualElement" class="upgrade_label_container" style="flex-grow: 1; width: 450px; justify-content: flex-start; background-color: rgb(0, 0, 0); margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;">
+                            <ui:Label text="HP" class="upgrade_label" style="color: rgb(255, 255, 255); -unity-text-align: middle-center;"/>
+                        </ui:VisualElement>
+                        <ui:Button text="" name="HPButton" class="upgrade_button hp_button"/>
+                    </ui:GroupBox>
+                    <ui:GroupBox name="LancePowerContainer" class="upgrade_container" style="flex-direction: row;">
+                        <ui:VisualElement class="upgrade_label_container" style="flex-grow: 1; width: 450px; justify-content: flex-start; background-color: rgb(0, 0, 0); margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;">
+                            <ui:Label text="Lance Power" class="upgrade_label" style="color: rgb(255, 255, 255); -unity-text-align: middle-center;"/>
+                        </ui:VisualElement>
+                        <ui:Button text="" name="LancePowerButton" class="upgrade_button"/>
+                    </ui:GroupBox>
+                    <ui:GroupBox name="LandmineStrengthContainer" class="upgrade_container" style="flex-direction: row;">
+                        <ui:VisualElement class="upgrade_label_container" style="flex-grow: 1; width: 450px; justify-content: flex-start; background-color: rgb(0, 0, 0); margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;">
+                            <ui:Label text="Landmine Strength" class="upgrade_label" style="color: rgb(255, 255, 255); -unity-text-align: middle-center;"/>
+                        </ui:VisualElement>
+                        <ui:Button text="" name="LandmineStrengthButton" class="upgrade_button"/>
+                    </ui:GroupBox>
+                    <ui:GroupBox name="ExplosionSizeContainer" class="upgrade_container" style="flex-direction: row;">
+                        <ui:VisualElement class="upgrade_label_container" style="flex-grow: 1; width: 450px; justify-content: flex-start; background-color: rgb(0, 0, 0); margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;">
+                            <ui:Label text="Explosion Size" class="upgrade_label" style="color: rgb(255, 255, 255); -unity-text-align: middle-center;"/>
+                        </ui:VisualElement>
+                        <ui:Button text="" name="ExplosionSizeButton" class="upgrade_button"/>
+                    </ui:GroupBox>
+                </ui:GroupBox>
+            </ui:VisualElement>
+            <ui:VisualElement name="CursorContainer" style="flex-grow: 1; width: 250px; flex-shrink: 0; align-content: flex-start; align-self: stretch;">
+                <ui:GroupBox name="Cursor" class="cursor" style="flex-direction: row; flex-shrink: 1; flex-grow: 0; aspect-ratio: 1; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; align-content: stretch; justify-content: flex-start; align-items: stretch; align-self: center;">
+                    <ui:VisualElement name="CursorArrow" style="flex-grow: 0; width: auto; height: auto; flex-shrink: 1; padding-top: 16px; padding-right: 16px; padding-bottom: 16px; padding-left: 16px; background-color: rgb(0, 0, 0);"/>
+                    <ui:VisualElement name="CursorBox" style="flex-grow: 0; width: 100px; height: 100px; flex-shrink: 0; margin-top: 20px; margin-right: 20px; margin-bottom: 20px; margin-left: 20px; aspect-ratio: 1; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; background-color: rgb(0, 0, 0); border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); justify-content: flex-start; align-self: auto; top: auto;"/>
+                </ui:GroupBox>
+            </ui:VisualElement>
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>
