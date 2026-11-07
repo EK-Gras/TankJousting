@@ -48,6 +48,7 @@ public class HealthComponent : Component
         {
             Debug.Log($"[DAMAGE] something on team {team} took {damage} of damage");
             hp -= damage;
+            Debug.Log($"remaining hp of {owner}: {hp}");
         }
 
         if (team == Team.PLAYER)

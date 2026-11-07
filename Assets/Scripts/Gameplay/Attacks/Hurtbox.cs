@@ -6,9 +6,9 @@ namespace Gameplay
     public class Hurtbox : MonoBehaviour
     {
         // damage
-        [SerializeField] int damage;
+        [SerializeField] public int damage;
         // param for team to damage
-        [SerializeField] HealthComponent.Team team;
+        [SerializeField] public HealthComponent.Team team;
         
         public void OnTriggerEnter2D(Collider2D other)
         {
@@ -37,6 +37,12 @@ namespace Gameplay
                 {
                     // take damage
                     enemyHealth.healthController.TakeDamage(damage);
+                    // basher shield flip
+                    Enemy temp = enemyHealth.gameObject.GetComponent<Enemy>();
+                    if (temp.type == Enemy.EnemyType.BASHER)
+                    {
+                        temp.justHit = true;
+                    }
                 }
                 else
                 {

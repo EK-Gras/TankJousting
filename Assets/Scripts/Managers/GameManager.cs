@@ -1,7 +1,7 @@
 using Gameplay.Player;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager
 {
     static GameManager thisInstance;
 
