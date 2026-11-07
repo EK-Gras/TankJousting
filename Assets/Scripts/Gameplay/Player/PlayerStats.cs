@@ -9,6 +9,8 @@ namespace Gameplay.Player
         [SerializeField] public float hp;
         [SerializeField] public float damage;
         [SerializeField] public float acceleration;
+        [SerializeField] public float landmineStrength;
+        [SerializeField] public float explosionSize;
         
 
         private void Awake()

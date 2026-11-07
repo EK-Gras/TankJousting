@@ -62,22 +62,21 @@ public class TurnManager : MonoBehaviour
 
     public void EnemyTurnTrigger()
     {
-        Time.timeScale = 1;
         turns++;
-        turnBeingTaken = false;
         nextTime = time + turnSpacing;
 
-        // TODO update to include enemy action choice, or leave to it in enemy class 
+        sceneEnemy.TurnOver();
+        
         sceneEnemy.TakeTurn(turns);
         turnPanel.SetActive(false);
         StartCoroutine("EnemyTurn");
-        // find begin turn button and enable it once enemy takes their turn
-        beginTurnButton.enabled = true;
+        
     }
 
     private IEnumerator EnemyTurn()
     {
         yield return new WaitForSeconds(1);
         turnPanel.SetActive(true);
+        beginTurnButton.enabled = true;
     }
 }

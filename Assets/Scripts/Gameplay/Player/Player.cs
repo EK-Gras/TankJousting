@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] private float groundCheckRadius = .01f;
     [SerializeField] private float slopeCheckDistance;
+    [SerializeField] private float gravityScale = 1f;
     
     
     // Private variables
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
     private bool startedLook = false;
     public bool isGrounded;
     public bool isOnSlope;
+    public bool rightSlope;
     
     private Vector2 colliderSize;
     
@@ -63,6 +65,9 @@ public class Player : MonoBehaviour
                 // check for terrain slopes
                 SlopeCheck();
 
+                // delete gravity while not airborne
+                rb.gravityScale = 0;
+
                 if (isGrounded && !isOnSlope)
                 {
                     // not max speed
@@ -86,7 +91,20 @@ public class Player : MonoBehaviour
                         // ok this is painful math, but it's basically: take normal ground movement formula -> multiply by the x vector of the normal perpendicular
                         // -> multiply by negative one because the direction needs inversion 
                         rb.linearVelocity = new Vector2(rb.linearVelocity.x + actionFloat * Time.deltaTime * GameManager.Instance.playerStats.acceleration * -slopeNormalPerp.x,
-                            rb.linearVelocity.x + actionFloat * Time.deltaTime * GameManager.Instance.playerStats.acceleration * -slopeNormalPerp.x);
+                            0);
+                        
+                        // check for left or right slope and adjust y
+                        if (rightSlope)
+                        {
+                            // when moving up and to the right
+                            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.x);
+                        }
+                        
+                        else
+                        {
+                            // when moving up and to the left
+                            rb.linearVelocity = new  Vector2(rb.linearVelocity.x, -rb.linearVelocity.x);
+                        }
                     }
 
                     // max speed limit
@@ -97,16 +115,17 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    
+                    // if in air, apply gravity
+                    rb.gravityScale = gravityScale;
                 }
                 
                 break;
             case TurnManager.TurnAction.ANGLE:
                 if (startedLook) return;
-                Quaternion look = new Quaternion(0,0,actionFloat, 0);
-                print(look);
+                Quaternion look = new Quaternion(0,0,actionFloat,0);
                 barrelPivot.StartRotationTowards(look);
                 startedLook = true;
+                rb.gravityScale = gravityScale;
                 break;
         }
         
@@ -114,7 +133,7 @@ public class Player : MonoBehaviour
 
     private void SlopeCheck()
     {
-        Vector2 checkPos = transform.position - new Vector3(0, colliderSize.y / 2, 0);
+        Vector2 checkPos = transform.position - new Vector3(0, colliderSize.y / 3, 0);
         
         HorizontalSlopeCheck(checkPos);
         VerticalSlopeCheck(checkPos);
@@ -128,11 +147,13 @@ public class Player : MonoBehaviour
         if (frontCheck)
         {
             isOnSlope = true;
+            rightSlope = true;
             slopeSideAngle = Vector2.Angle(frontCheck.normal, Vector2.up);
         }
         else if (backCheck)
         {
             isOnSlope = true;
+            rightSlope = false;
             slopeSideAngle = Vector2.Angle(backCheck.normal, Vector2.up);
         }
         else

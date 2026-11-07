@@ -198,5 +198,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4045126391b83224087235d2594c5220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Landmine
-  timer: 0.5
-  explosionPrefab: {fileID: 2612296564616087485, guid: 1d027f9fe663b3946942d52c42a61ba4, type: 3}
+  timer: 2
+  explosionPrefab: {fileID: 2612296564616087485, guid: 09f193081bffc2d459f50b1e4ff3f857, type: 3}

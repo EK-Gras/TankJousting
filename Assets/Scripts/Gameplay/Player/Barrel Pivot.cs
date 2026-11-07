@@ -21,6 +21,8 @@ public class BarrelPivot : MonoBehaviour
     public void StartRotationTowards(Quaternion rotation)
     {
         targetRotation = rotation;
+        if (this == null)
+            return;
         StopAllCoroutines();
         StartCoroutine("RotateTowards");
     }
@@ -29,8 +31,6 @@ public class BarrelPivot : MonoBehaviour
     {
         float timeElapsed = 0;
         Quaternion startRotation = transform.rotation;
-        print(targetRotation.eulerAngles.z);
-
         Quaternion target;
         
         if (targetRotation.z == 180 || targetRotation.z == -180)
@@ -39,8 +39,6 @@ public class BarrelPivot : MonoBehaviour
         }
         else 
             target = transform.rotation * Quaternion.Euler(0, 0, targetRotation.z*-1);
-        
-        
         
         while (timeElapsed < lerpDuration)
         {

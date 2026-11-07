@@ -147,6 +147,9 @@ MonoBehaviour:
   targetRadius: 2
   radius: 0.5
   explosionPower: 6
+  explosionDamage: 10
+  displacesPlayer: 1
+  teamsToHit: 
 --- !u!114 &962800788453766102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,4 +163,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Hurtbox
   damage: 10
-  team: 1
+  team: 0
