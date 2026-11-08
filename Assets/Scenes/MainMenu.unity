@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d4b320750bd9442ae36b2e2d1d0519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneButton
-  sceneName: UpgradeScreen
+  sceneName: UpgradesMenuController
   isOverlay: 1
 --- !u!1 &549363165
 GameObject:

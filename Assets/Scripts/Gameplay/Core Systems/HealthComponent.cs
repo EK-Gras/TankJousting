@@ -19,6 +19,7 @@ public class HealthComponent : Component
     public int hp;
     public int maxHP;
     public GameObject owner;
+    public bool IsLost => hp <= 0;
 
     /// <param name="hp"> Integer value describing hitpoints </param>
     /// <param name="team"> Can be from {Team.PLAYER, Team.ENEMY, Team.DESTRUCTIBLE} </param>
@@ -63,13 +64,13 @@ public class HealthComponent : Component
 
         if (team == Team.PLAYER)
         {
-            //SceneManager.LoadScene("Game Over");
+            GameManager.Instance.EndRound(false); // Player team lost
             return true;
         }
 
         if (team == Team.ENEMY)
         {
-            //EventBus.Instance.EnemyDead(owner);
+            GameManager.Instance.EndRound(true); // Enemy team lost
         }
 
         Destroy(owner);

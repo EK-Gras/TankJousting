@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Gameplay.Player;
 
 [RequireComponent(typeof(UIDocument))]
 public class UpgradesMenuController : MonoBehaviour
 {
     public enum StatType { HP, LancePower, LandmineStrength, ExplosionSize }
-
-    [SerializeField] private string nextSceneName;
 
     // Const amounts added per stat type upgrade
     private const int HP_UPGRADE = 25;
@@ -79,7 +78,8 @@ public class UpgradesMenuController : MonoBehaviour
         
         chosen = true;
         ApplyUpgrade(statType);
-        SceneTransitionManager.Instance.ChangeScene(nextSceneName);
+        GameManager.Instance.AdvanceLevel();
+        SceneTransitionManager.Instance.ChangeScene(GameManager.NextSceneName());
     }
 
     private void OnButtonHovered(PointerEnterEvent evt)
@@ -101,22 +101,30 @@ public class UpgradesMenuController : MonoBehaviour
     
     private void ApplyUpgrade(StatType statType)
     {
+
+        PlayerStatsData stats = GameManager.Instance.savedStats;
+        if (stats == null)
+        {
+            Debug.LogError("No saved player stats found. Start from a battle scene first.");
+            return;
+        }
+
         switch (statType)
         {
             case StatType.HP:
-                // Apply HP upgrade logic here
+                stats.hp += HP_UPGRADE;
                 break;
             
             case StatType.LancePower:
-                // Apply Lance Power upgrade logic here
+                stats.damage += LANCE_POWER_UPGRADE;
                 break;
             
             case StatType.LandmineStrength:
-                // Apply Landmine Strength upgrade logic here
+                stats.landmineStrength += LANDMINE_STRENGTH_UPGRADE;
                 break;
 
             case StatType.ExplosionSize:
-                // Apply Explosion Size upgrade logic here
+                stats.explosionSize += EXPLOSION_SIZE_UPGRADE;
                 break;
         }
     }

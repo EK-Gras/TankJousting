@@ -32,6 +32,9 @@ public class TurnManager : MonoBehaviour
     void Awake()
     {
         GameManager.Instance.turnManager = this;
+        GameManager.Instance.roundOver = false;
+        Time.timeScale = 1;
+
         playerRef = FindAnyObjectByType<Player>();
         sceneEnemy = FindAnyObjectByType<Enemy>();
         beginTurnButton = FindAnyObjectByType<BeginTurn>()._button;
@@ -39,6 +42,8 @@ public class TurnManager : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.roundOver) { return; }
+
         // next turn moment reached
         if (time >= nextTime && !turnBeingTaken)
         {
@@ -52,6 +57,9 @@ public class TurnManager : MonoBehaviour
     // turn finished being taken, play out next moment
     public void TurnTrigger(TurnAction action, float input)
     {
+        
+        if (GameManager.Instance.roundOver) { return; }
+        
         Time.timeScale = 1;
         turns++;
         turnBeingTaken = false;
@@ -62,6 +70,9 @@ public class TurnManager : MonoBehaviour
 
     public void EnemyTurnTrigger()
     {
+
+        if (GameManager.Instance.roundOver) { return; }
+
         turns++;
         nextTime = time + turnSpacing;
 
@@ -76,6 +87,9 @@ public class TurnManager : MonoBehaviour
     private IEnumerator EnemyTurn()
     {
         yield return new WaitForSeconds(1);
+
+        if (GameManager.Instance.roundOver) { yield break; }
+
         turnPanel.SetActive(true);
         beginTurnButton.enabled = true;
     }

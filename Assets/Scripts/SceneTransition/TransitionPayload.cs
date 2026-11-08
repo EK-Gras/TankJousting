@@ -94,7 +94,7 @@ public class TransitionPayload
         float elapsed = 0f;
         while (elapsed < time)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             SetFade(Mathf.Lerp(from, to, elapsed / time));
             yield return null;
         }
