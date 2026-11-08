@@ -10958,7 +10958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 838846709051189930, guid: fe6d731d14c16ee489d69809d6c5a5e8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2055329625436430434, guid: fe6d731d14c16ee489d69809d6c5a5e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11005,6 +11005,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe6d731d14c16ee489d69809d6c5a5e8, type: 3}
+--- !u!114 &742093687 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3759243880696924211, guid: fe6d731d14c16ee489d69809d6c5a5e8, type: 3}
+  m_PrefabInstance: {fileID: 742093686}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2531375aed3c455b93c03bc78073fe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
 --- !u!114 &748004686 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5489987915056489981, guid: b578617407fdab9438663ae704adce96, type: 3}
@@ -12529,6 +12540,10 @@ MonoBehaviour:
   sceneEnemy: {fileID: 0}
   turnPanel: {fileID: 1634411740}
   beginTurnButton: {fileID: 0}
+  enemies:
+  - {fileID: 742093687}
+  - {fileID: 449490257730458477}
+  - {fileID: 8285720879040075755}
   turnSpacing: 1
   turns: 0
   turnBeingTaken: 0
@@ -13499,6 +13514,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b578617407fdab9438663ae704adce96, type: 3}
+--- !u!114 &449490257730458477 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9047603134953112234, guid: b578617407fdab9438663ae704adce96, type: 3}
+  m_PrefabInstance: {fileID: 449490257730458476}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2531375aed3c455b93c03bc78073fe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
 --- !u!1001 &8285720879040075754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13596,6 +13622,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cb157fa5e8c7b9428a81697a9c54301, type: 3}
+--- !u!114 &8285720879040075755 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 324284619641364901, guid: 6cb157fa5e8c7b9428a81697a9c54301, type: 3}
+  m_PrefabInstance: {fileID: 8285720879040075754}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2531375aed3c455b93c03bc78073fe62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

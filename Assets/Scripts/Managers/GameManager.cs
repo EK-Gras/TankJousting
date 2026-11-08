@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GameManager
 {
-    public enum Level { Level1, Victory }
+    public enum Level { Level1, Level2, Level3, Victory }
 
     private const string UPGRADES_SCENE = "UpgradesMenuController";
 
@@ -26,7 +26,20 @@ public class GameManager
         switch (Instance.currentLevel)
         {
             case Level.Level1: return "SampleScene";
+            case Level.Level2: return "SampleScene";
+            case Level.Level3: return "SampleScene";
             default: return "MainMenu";
+        }
+    }
+
+    public int CurrentEnemyIndex()
+    {
+        switch (currentLevel)
+        {
+            case Level.Level1: return 0;
+            case Level.Level2: return 1;
+            case Level.Level3: return 2;
+            default: return 0;
         }
     }
 
