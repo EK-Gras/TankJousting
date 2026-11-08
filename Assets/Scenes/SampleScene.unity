@@ -10958,7 +10958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 838846709051189930, guid: fe6d731d14c16ee489d69809d6c5a5e8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2055329625436430434, guid: fe6d731d14c16ee489d69809d6c5a5e8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11894,7 +11894,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -13522,6 +13522,10 @@ PrefabInstance:
     - target: {fileID: 2581895665639549305, guid: 6cb157fa5e8c7b9428a81697a9c54301, type: 3}
       propertyPath: m_Name
       value: BigBoy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581895665639549305, guid: 6cb157fa5e8c7b9428a81697a9c54301, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3442384549154072927, guid: 6cb157fa5e8c7b9428a81697a9c54301, type: 3}
       propertyPath: projectile
