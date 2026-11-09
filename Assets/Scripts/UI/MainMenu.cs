@@ -43,17 +43,17 @@ public class MainMenu : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("Arena");
+        SceneTransitionManager.Instance.ChangeScene("Arena");
     }
 
     public void Options()
     {
-        SceneManager.LoadScene("OptionsMenu");
+        SceneTransitionManager.Instance.ChangeScene("OptionsMenu");
     }
 
     public void ShowCredits()
     {
-        SceneManager.LoadScene("CreditsMenu");
+        SceneTransitionManager.Instance.ChangeScene("CreditsMenu");
     }
 
     public void QuitGame()
