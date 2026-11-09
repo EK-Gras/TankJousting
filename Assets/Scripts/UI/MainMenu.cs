@@ -10,14 +10,16 @@ public class MainMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("Fullscreen", 1);
         }
-        if (PlayerPrefs.HasKey("ResolutionHeight"))
+        if (!PlayerPrefs.HasKey("ResolutionHeight"))
         {
-            PlayerPrefs.SetInt("ResolutionHeight", 1080);
+            PlayerPrefs.SetInt("ResolutionHeight", Screen.height);
         }
-        if (PlayerPrefs.HasKey("ResolutionWidth"))
+        if (!PlayerPrefs.HasKey("ResolutionWidth"))
         {
-            PlayerPrefs.SetInt("ResolutionWidth", 1920);
+            PlayerPrefs.SetInt("ResolutionWidth", Screen.width);
         }
+
+        Screen.SetResolution(PlayerPrefs.GetInt("ResolutionWidth"), PlayerPrefs.GetInt("ResolutionHeight"), PlayerPrefs.GetInt("Fullscreen") == 1);
     }
 
     public void Options()
