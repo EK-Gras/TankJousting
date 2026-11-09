@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4479894236951772316}
   - component: {fileID: 962800788453766102}
   m_Layer: 0
-  m_Name: LandmineExplosive
+  m_Name: LandmineExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.52990127, b: 0, a: 1}
