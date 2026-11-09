@@ -89,8 +89,8 @@ public class Barrel : MonoBehaviour
         transform.localScale = new Vector3(originSize.x * currentSize, originSize.y, originSize.z);
         
         // then, take midway point of y scale to find anchor point
-        float anchorX = transform.localScale.x / 2;
-        transform.localPosition = new Vector3(anchorX + startX, 0, 0);
+        float anchorX = transform.localScale.x;
+        transform.localPosition = new Vector3(anchorX * startX, 0, 0);
     }
 
     public void ReadyFire(Enemy.EnemyAction action, float time)

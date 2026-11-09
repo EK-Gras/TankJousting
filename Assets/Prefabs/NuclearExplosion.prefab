@@ -82,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.52990127, b: 0, a: 1}
@@ -149,7 +149,7 @@ MonoBehaviour:
   explosionPower: 15
   explosionDamage: 30
   displacesPlayer: 1
-  teamsToHit: 
+  teamToHit: 0
 --- !u!114 &962800788453766102
 MonoBehaviour:
   m_ObjectHideFlags: 0
