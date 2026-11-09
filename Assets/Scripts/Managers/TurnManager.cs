@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Gameplay.Player;
 
 public class TurnManager : MonoBehaviour
 {
@@ -13,6 +13,9 @@ public class TurnManager : MonoBehaviour
     [SerializeField] public GameObject turnPanel;
     [SerializeField] public Button beginTurnButton;
     
+    [Header("Enemies (index 0 = Level 1, 1 = Level 2, 2 = Level 3)")]
+    [SerializeField] public Enemy[] enemies;
+
     [Header("Turn Settings")]
     [SerializeField] float turnSpacing = 1f;
     public int turns = 0;
@@ -36,8 +39,27 @@ public class TurnManager : MonoBehaviour
         Time.timeScale = 1;
 
         playerRef = FindAnyObjectByType<Player>();
-        sceneEnemy = FindAnyObjectByType<Enemy>();
+        SelectEnemy();
         beginTurnButton = FindAnyObjectByType<BeginTurn>()._button;
+    }
+
+    private void SelectEnemy()
+    {
+        if (enemies == null || enemies.Length == 0) {
+            Debug.LogError("TurnManager: enemies array is empty. Assign Turret, Basher, and BigBoy in inspector.");
+            sceneEnemy = FindAnyObjectByType<Enemy>();
+            return;
+        }
+
+        int index = GameManager.Instance.CurrentEnemyIndex();
+
+        if(index >= enemies.Length) { index = enemies.Length - 1; }
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].gameObject.SetActive(i == index);
+        }
+
+        sceneEnemy = enemies[index];
     }
 
     private void Update()

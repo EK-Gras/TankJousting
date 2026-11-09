@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4116706590076513756
 Transform:
   m_ObjectHideFlags: 0
@@ -113,6 +113,7 @@ MonoBehaviour:
   barrel: {fileID: 3442384549154072927}
   pivot: {fileID: 7084334206412983467}
   groundCheck: {fileID: 3221128322373503864}
+  nuke: {fileID: 0}
   takingTurn: 0
   maxSpeed: 10
   movementDirection: 1
@@ -469,6 +470,7 @@ MonoBehaviour:
   barrelEnd: {fileID: 5479967851167665334}
   projectile: {fileID: 1000678926649578701, guid: 0884bcf69f7d68841b46d6d62de76d95, type: 3}
   rocket: {fileID: 1000678926649578701, guid: 9d5e69eaba4b5b5498884eaabb4caafb, type: 3}
+  nuke: {fileID: 0}
   maxSize: 3
   minSize: 1
   scalingDivider: 10
