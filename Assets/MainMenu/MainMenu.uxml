@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="UpgradeBG" style="flex-grow: 1; background-color: rgb(19, 60, 164); justify-content: center; align-items: center;">
+        <ui:GroupBox name="GroupBox" style="align-self: center; align-items: center; flex-direction: column; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-grow: 0; height: 500px;">
+            <ui:VisualElement name="Title" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-3753015318093942961&amp;guid=fc4e4c65a93b4744bb6d03bd8abf0150&amp;type=3#arrow-left&quot;);"/>
+            <ui:Button text="" name="HPButton" class="upgrade_button hp_button" style="width: 600px;"/>
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>
