@@ -14,6 +14,8 @@ public class ValueDepicted : MonoBehaviour
     {
         _text = GetComponent<TMP_Text>();
     }
+    
+    
 
     // Update is called once per frame
     void Update()
@@ -22,13 +24,13 @@ public class ValueDepicted : MonoBehaviour
         switch (setting)
         {
             case 0:
-                _text.text = $"Value: {value/100f}";
+                _text.text = $"Charge Acceleration: {value/100f}";
                 break;
             case 1:
-                _text.text = $"Value: {value}";
+                _text.text = $"Degrees Rotated: {value}";
                 break;
             case 2:
-                _text.text = $"Value: {value/4f}";
+                _text.text = $"Time until detonation: {value/4f}";
                 break;
         }
     }

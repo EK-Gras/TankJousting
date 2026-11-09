@@ -15,7 +15,6 @@ public class Enemy: MonoBehaviour
     private EnemyHealth health;
     private Rigidbody2D rb;
     public bool takingTurn;
-    private CapsuleCollider2D capsuleCollider;
 
     [Header("Settings")]
     [SerializeField] private float maxSpeed = 10f;
@@ -44,8 +43,6 @@ public class Enemy: MonoBehaviour
     public bool isOnSlope;
     public bool rightSlope;
     public bool justHit;
-    
-    private Vector2 colliderSize;
     
     private Quaternion barrelStartRotation;
     
@@ -76,8 +73,6 @@ public class Enemy: MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<EnemyHealth>();
-        capsuleCollider = GetComponent<CapsuleCollider2D>();
-        colliderSize = capsuleCollider.size;
         groundLayer = LayerMask.GetMask("Ground");
         barrelStartRotation = new Quaternion(0,0,-barrel.sprayEndPoint.z,0);
     }
@@ -206,7 +201,7 @@ public class Enemy: MonoBehaviour
 
     private void SlopeCheck()
     {
-        Vector2 checkPos = transform.position - new Vector3(0, colliderSize.y / 3, 0);
+        Vector2 checkPos = new Vector2(groundCheck.position.x, groundCheck.position.y + 1);
         
         HorizontalSlopeCheck(checkPos);
         VerticalSlopeCheck(checkPos);

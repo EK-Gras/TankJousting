@@ -25,9 +25,9 @@ public class GameManager
     {
         switch (Instance.currentLevel)
         {
-            case Level.Level1: return "SampleScene";
-            case Level.Level2: return "SampleScene";
-            case Level.Level3: return "SampleScene";
+            case Level.Level1: return "Arena";
+            case Level.Level2: return "Arena";
+            case Level.Level3: return "Arena";
             default: return "MainMenu";
         }
     }

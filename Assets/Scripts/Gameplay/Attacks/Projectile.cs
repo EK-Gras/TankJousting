@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
     {
         if (rb != null)
         {
-            rb.AddForce(projectileSpeed * transform.up, ForceMode2D.Impulse);
+            rb.AddForce(projectileSpeed * transform.right, ForceMode2D.Impulse);
         }
 
         if (hasLifetime)

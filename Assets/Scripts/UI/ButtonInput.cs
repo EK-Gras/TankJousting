@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -14,6 +15,23 @@ namespace UI
         [SerializeField] Slider slider;
         [SerializeField] private float sliderSetting;
         [SerializeField] private BeginTurn turnButton;
+        [SerializeField] private GameObject cursor;
+
+        private void Start()
+        {
+            // move setting to start with
+            minValueText.text = "-1 m/s^2";
+            maxValueText.text = "1 m/s^2";
+            slider.maxValue = 100;
+            slider.minValue = -100;
+            _valueDepicted.setting = 0;
+            turnButton.OnSettingChanged(0);
+            // set cursor
+            if (sliderSetting == 0)
+            {
+                cursor.transform.position = transform.position;
+            }
+        }
 
         public void ModifySliderSetting()
         {
@@ -21,18 +39,17 @@ namespace UI
             switch (sliderSetting)
             {
                 case 0:
-                    titleText.text = "charge speed";
-                    minValueText.text = "-1 m/s";
-                    maxValueText.text = "1 m/s";
+                    minValueText.text = "-1 m/s^2";
+                    maxValueText.text = "1 m/s^2";
                     slider.maxValue = 100;
                     slider.minValue = -100;
                     _valueDepicted.setting = 0;
                     turnButton.OnSettingChanged(0);
+                    cursor.transform.position = transform.position;
                     break;
                 case 1:
-                    titleText.text = "barrel angle";
-                    minValueText.text = "-180 degrees";
-                    maxValueText.text = "180 degrees";
+                    minValueText.text = "180 degrees counterclockwise";
+                    maxValueText.text = "180 degrees clockwise";
                     slider.maxValue = 180;
                     slider.minValue = -180;
                     _valueDepicted.setting = 1;
@@ -41,16 +58,18 @@ namespace UI
                     slider.value = 
                         GameManager.Instance.turnManager.playerRef.barrelPivot.transform.localRotation.z;
                     turnButton.OnSettingChanged(1);
+                    cursor.transform.position = transform.position;
                     break;
                 case 2:
-                    titleText.text = "fuse timer";
                     minValueText.text = ".5 sec";
                     maxValueText.text = "2 sec";
                     slider.maxValue = 8;
                     slider.minValue = 2;
                     _valueDepicted.setting = 2;
                     turnButton.OnSettingChanged(2);
+                    cursor.transform.position = transform.position;
                     break;
+                
             }
         }
     }
