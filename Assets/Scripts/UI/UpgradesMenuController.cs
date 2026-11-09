@@ -19,6 +19,7 @@ public class UpgradesMenuController : MonoBehaviour
     private VisualElement root;
     private VisualElement cursorContainer;
     private VisualElement cursor;
+    private Label cursorLabel;
     private Button hoveredButton;
     private bool chosen;
 
@@ -33,18 +34,19 @@ public class UpgradesMenuController : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
         cursorContainer = root.Q<VisualElement>("CursorContainer");
         cursor = root.Q<VisualElement>("Cursor");
+        cursorLabel = root.Q<Label>("CursorLabel");
 
         buttonStats.Clear();
         buttonStats[root.Q<Button>("HPButton")] = StatType.HP;
         buttonStats[root.Q<Button>("LancePowerButton")] = StatType.LancePower;
         buttonStats[root.Q<Button>("LandmineStrengthButton")] = StatType.LandmineStrength;
         buttonStats[root.Q<Button>("ExplosionSizeButton")] = StatType.ExplosionSize;
-        
 
         foreach (KeyValuePair<Button, StatType> pair in buttonStats)
         {
             pair.Key.RegisterCallback<ClickEvent>(OnButtonClicked);
             pair.Key.RegisterCallback<PointerEnterEvent>(OnButtonHovered);
+            pair.Key.text = GetPlayerStatFromType(pair.Value).ToString();
         }
 
         chosen = false;
@@ -85,6 +87,8 @@ public class UpgradesMenuController : MonoBehaviour
     private void OnButtonHovered(PointerEnterEvent evt)
     {
         hoveredButton = evt.currentTarget as Button;
+        if (hoveredButton == null || !buttonStats.TryGetValue(hoveredButton, out StatType statType)) { return; }
+        cursorLabel.text = "+" + StatTypeToConstString(statType);
         MoveCursorTo(hoveredButton);
     }
 
@@ -145,6 +149,53 @@ public class UpgradesMenuController : MonoBehaviour
         float cursorCenterY = cursor.layout.y + cursor.layout.height / 2f;
 
         cursor.style.translate = new Translate(0f, targetCenterY - cursorCenterY);
+    }
+
+    /*
+    ==============
+    ENUM TO STRING
+    ==============
+    */
+
+    private float GetPlayerStatFromType(StatType statType)
+    {
+        PlayerStatsData stats = GameManager.Instance.savedStats;
+        if (stats == null)
+        {
+            Debug.LogError("No saved player stats found. Start from a battle scene first.");
+            return 0f;
+        }
+
+        switch (statType)
+        {
+            case StatType.HP:
+                return stats.hp;
+            case StatType.LancePower:
+                return stats.damage;
+            case StatType.LandmineStrength:
+                return stats.landmineStrength;
+            case StatType.ExplosionSize:
+                return stats.explosionSize;
+            default:
+                return 0f;
+        }
+    }
+
+    private string StatTypeToConstString(StatType statType)
+    {
+        switch (statType)
+        {
+            case StatType.HP:
+                return HP_UPGRADE.ToString();
+            case StatType.LancePower:
+                return LANCE_POWER_UPGRADE.ToString();
+            case StatType.LandmineStrength:
+                return LANDMINE_STRENGTH_UPGRADE.ToString();
+            case StatType.ExplosionSize:
+                return EXPLOSION_SIZE_UPGRADE.ToString();
+            default:
+                return statType.ToString();
+        }
     }
 
 }

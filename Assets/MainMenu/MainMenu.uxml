@@ -1,8 +1,16 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="UpgradeBG" style="flex-grow: 1; background-color: rgb(19, 60, 164); justify-content: center; align-items: center;">
-        <ui:GroupBox name="GroupBox" style="align-self: center; align-items: center; flex-direction: column; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-grow: 0; height: 500px;">
-            <ui:VisualElement name="Title" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-3753015318093942961&amp;guid=fc4e4c65a93b4744bb6d03bd8abf0150&amp;type=3#arrow-left&quot;);"/>
-            <ui:Button text="" name="HPButton" class="upgrade_button hp_button" style="width: 600px;"/>
+    <Style src="project://database/Assets/MainMenu/MainMenu.uss?fileID=7433441132597879392&amp;guid=9eeb621f598c7ca4bae24b297a1f86df&amp;type=3#MainMenu"/>
+    <ui:VisualElement name="UpgradeBG" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0); justify-content: center; align-items: center; background-image: url(&quot;project://database/Assets/Sprites/Game-Ready%20Assets/BG/Tank%20Joust%20BG.png?fileID=2800000&amp;guid=da5596901daa9bb43a95956a7777a3f3&amp;type=3#Tank Joust BG&quot;);">
+        <ui:GroupBox name="GroupBox" style="flex-grow: 1; width: 1000px;">
+            <ui:VisualElement name="UIPadding" style="flex-grow: 1; height: 400px;"/>
+            <ui:GroupBox name="GroupBox" style="align-self: center; align-items: center; flex-direction: column; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; flex-grow: 1;">
+                <ui:Button text="START GAME" name="StartButton" class="upgrade_button hp_button Button MenuButton"/>
+                <ui:Button text="SETTINGS" name="SettingsButton" class="upgrade_button hp_button ButtonUnhovered Button MenuButton"/>
+                <ui:Button text="CREDITS" name="CreditsButton" class="upgrade_button hp_button ButtonUnhovered Button MenuButton"/>
+                <ui:Button text="END" name="EndButton" class="upgrade_button hp_button ButtonUnhovered Button MenuButton"/>
+            </ui:GroupBox>
+            <ui:VisualElement name="UIPadding" style="flex-grow: 1;"/>
         </ui:GroupBox>
     </ui:VisualElement>
+    <ui:VisualElement name="Title" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Sprites/Game-Ready%20Assets/UI/TitleScreen_Title.png?fileID=2800000&amp;guid=4bc0c323d9b8be249b4a569a7c7abc49&amp;type=3#TitleScreen_Title&quot;); -unity-background-scale-mode: stretch-to-fill; flex-shrink: 0; flex-direction: column; align-items: center; justify-content: space-around; align-self: center; width: 1200px; height: 400px; position: absolute; top: 100px;"/>
 </ui:UXML>

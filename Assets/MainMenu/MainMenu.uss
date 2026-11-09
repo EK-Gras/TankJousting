@@ -1,0 +1,31 @@
+:root {
+}
+
+.MenuButton {
+    padding-top: 32px;
+    padding-right: 32px;
+    padding-bottom: 32px;
+    padding-left: 32px;
+    margin-top: 16px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    margin-left: 16px;
+    background-image: url("project://database/Assets/Sprites/Game-Ready%20Assets/UI/TitleScreen_Button_Unpressed.png?fileID=2800000&guid=7c72ea141c854034b9e62173ef8875e2&type=3#TitleScreen_Button_Unpressed");
+    -unity-background-scale-mode: scale-to-fit;
+    background-color: rgba(0, 0, 0, 0);
+    width: 800px;
+    flex-grow: 1;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold-and-italic;
+    -unity-text-align: middle-center;
+    font-size: 48px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.MenuButton:hover {
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url("project://database/Assets/Sprites/Game-Ready%20Assets/UI/TitleScreen_Button_Pressed.png?fileID=2800000&guid=828a302c4cb184e43a674836012f6a74&type=3#TitleScreen_Button_Pressed");
+}
