@@ -146,7 +146,7 @@ MonoBehaviour:
   lifetime: 0.1
   targetRadius: 2
   radius: 0.5
-  explosionPower: 6
+  explosionPower: 15
   explosionDamage: 10
   displacesPlayer: 1
   teamToHit: 1

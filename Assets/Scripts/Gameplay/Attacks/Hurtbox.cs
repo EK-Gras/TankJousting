@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,7 +10,58 @@ namespace Gameplay
         [SerializeField] public int damage;
         // param for team to damage
         [SerializeField] public HealthComponent.Team team;
+
+        private void OnDisable()
+        {
+            print("disabling hurtbox");
+            damage = 0;
+        }
+
+        // Non-trigger variant
+        public void OnCollisionEnter2D(Collision2D other)
+        {
+            #region Player Check
+
+            if (other.gameObject.CompareTag("Player") && HealthComponent.Team.PLAYER == team)
+            {
+                if (other.gameObject.TryGetComponent(out PlayerHealth playerHealth))
+                {
+                    // take damage
+                    playerHealth.healthController.TakeDamage(damage);
+                }
+                else
+                {
+                    Debug.Log(other.gameObject.name + " has no health component");
+                }
+            }
+
+            #endregion
+            
+            #region Enemy Check
+            
+            if (other.gameObject.CompareTag("Enemy") && HealthComponent.Team.ENEMY == team)
+            {
+                if (other.gameObject.TryGetComponent(out EnemyHealth enemyHealth))
+                {
+                    // take damage
+                    enemyHealth.healthController.TakeDamage(damage);
+                    // basher shield flip
+                    Enemy temp = enemyHealth.gameObject.GetComponent<Enemy>();
+                    if (temp.type == Enemy.EnemyType.BASHER)
+                    {
+                        temp.justHit = true;
+                    }
+                }
+                else
+                {
+                    Debug.Log(other.gameObject.name + " has no health component");
+                }
+            }
+            
+            #endregion
+        }
         
+        // Trigger variant
         public void OnTriggerEnter2D(Collider2D other)
         {
             #region Player Check

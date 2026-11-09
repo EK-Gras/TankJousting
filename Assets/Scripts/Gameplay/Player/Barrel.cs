@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Gameplay;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -23,19 +24,54 @@ public class Barrel : MonoBehaviour
     [SerializeField] private Vector2 currentPos;
     [SerializeField] public Vector3 sprayEndPoint;
     [SerializeField] private float shieldHitReboundStrength = 3f;
+    [SerializeField] private float shieldBreakDelay = .2f;
 
+    private BarrelShieldNegotiator disableParent;
+    private Hurtbox damage;
+    private bool shieldLocked;
     private float startX;
 
     private void Start()
     {
+        if (TryGetComponent(out BarrelShieldNegotiator shield))
+        {
+            disableParent = shield;
+            disableParent.barrelToDisable = this;
+        }
+        damage = GetComponent<Hurtbox>();
         playerRef = GameManager.Instance.turnManager.playerRef.GetComponent<Rigidbody2D>();
         originSize = transform.localScale;
         startX = transform.localPosition.x;
     }
 
+    private void OnEnable()
+    {
+        if (disableParent == null)
+        {
+            return;
+        }
+        if (Physics2D.OverlapCircle(new Vector2(transform.position.x, transform.position.y), .1f,
+                LayerMask.GetMask("Shield")) != null)
+        {
+            disableParent.RunShieldProtocol();
+        }
+        else
+        {
+            damage.enabled = true;
+        }
+    }
+
+    private void OnDisable()
+    {
+        // safety
+        if (this == null || damage == null)
+            return;
+        damage.enabled = false;
+    }
+
     private void FixedUpdate()
     {
-        if (gameObject.CompareTag("Player"))
+        if (gameObject.CompareTag("Player") && !shieldLocked)
             ScaleBySpeed();
     }
 
@@ -45,40 +81,13 @@ public class Barrel : MonoBehaviour
         {
             print("Shield collided");
             // direction to push player in when colliding with shield
-            Vector2 direction = other.transform.position - transform.position;
-            float temp = playerRef.linearVelocity.x;
-            // stop player momentum, then add force
-            playerRef.linearVelocity = new Vector2(0, playerRef.linearVelocity.y);
-            playerRef.AddForce(direction.normalized * shieldHitReboundStrength - new Vector2(temp,0), ForceMode2D.Impulse);
+            float x = other.transform.position.x > transform.position.x ? -1 : 1;
+            print(x);
+            playerRef.linearVelocity = new Vector2(x * shieldHitReboundStrength, 0);
+            playerRef.AddForce(new Vector2(x * shieldHitReboundStrength, 0), ForceMode2D.Impulse);
             // print(direction.normalized * shieldHitReboundStrength);
-            // disable barrel damage just in case
-            Hurtbox damage = GetComponent<Hurtbox>();
-            damage.enabled = false;
-            // barrel 
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Shield"))
-        {
-            // direction to push player in when colliding with shield
-            Vector2 direction = other.transform.position - transform.position;
-            float temp = playerRef.linearVelocity.x;
-            // stop player momentum, then add force
-            playerRef.linearVelocity = new Vector2(0, playerRef.linearVelocity.y);
-            // add increasing force to player until they are thrown out of shield radius
-            playerRef.AddForce(direction.normalized * shieldHitReboundStrength - new Vector2(temp,0), ForceMode2D.Impulse);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Shield"))
-        {
-            // can deal damage again
-            Hurtbox damage = GetComponent<Hurtbox>();
-            damage.enabled = true;
+            // barrel disable
+            disableParent.RunShieldProtocol();
         }
     }
 
@@ -91,6 +100,7 @@ public class Barrel : MonoBehaviour
         // then, take midway point of y scale to find anchor point
         float anchorX = transform.localScale.x;
         transform.localPosition = new Vector3(anchorX * startX, 0, 0);
+        damage.damage = (int) (GameManager.Instance.playerStats.damage * currentSize);
     }
 
     public void ReadyFire(Enemy.EnemyAction action, float time)

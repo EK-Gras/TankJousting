@@ -10,6 +10,11 @@ public class Rocket : MonoBehaviour
     
     private void OnDestroy()
     {
+        if (GameManager.Instance.roundOver)
+        {
+            return;
+        }
+        
         GameObject exp = Instantiate(explosion, transform.position, transform.rotation);
         Explosion e = exp.GetComponent<Explosion>();
         

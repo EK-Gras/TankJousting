@@ -90,12 +90,9 @@ public class Enemy: MonoBehaviour
             case EnemyAction.MOVE:
                 
                 // check for terrain slopes
-                SlopeCheck();
+                //SlopeCheck();
 
-                // delete gravity while not airborne
-                rb.gravityScale = 0.1f;
-
-                if (isGrounded && !isOnSlope)
+                if (isGrounded)
                 {
                     // not max speed
                     if (rb.linearVelocity.magnitude <= maxSpeed)
@@ -110,6 +107,7 @@ public class Enemy: MonoBehaviour
                         rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
                     }
                 }
+                // deprecated 
                 else if (isGrounded && isOnSlope)
                 {
                     // not max speed
@@ -140,11 +138,7 @@ public class Enemy: MonoBehaviour
                         rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
                     }
                 }
-                else
-                {
-                    // if in air, apply gravity
-                    rb.gravityScale = gravityScale;
-                }
+                
                 
                 break;
             case EnemyAction.ROTATE:
@@ -411,10 +405,10 @@ public class Enemy: MonoBehaviour
                 Player playerRef = GameManager.Instance.turnManager.playerRef;
                 // if player is to the right of Big Boy, search for correct rotation
                 if (playerRef.transform.position.x > transform.position.x)
-                    action = pivot.transform.rotation.z >= 0 ? EnemyAction.ROTATE : EnemyAction.IDLE;
+                    action = pivot.transform.localRotation.z >= 0 ? EnemyAction.ROTATE : EnemyAction.IDLE;
                 // player is to the left
                 else
-                    action = pivot.transform.rotation.z <= 0 ? EnemyAction.ROTATE : EnemyAction.IDLE;
+                    action = pivot.transform.localRotation.z < 0 ? EnemyAction.ROTATE : EnemyAction.IDLE;
                 print("Enemy is angling barrel towards player vicinity");
                 break;
             case 12:

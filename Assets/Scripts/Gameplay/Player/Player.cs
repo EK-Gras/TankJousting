@@ -57,12 +57,12 @@ public class Player : MonoBehaviour
             case TurnManager.TurnAction.CHARGE:
                 
                 // check for terrain slopes
-                SlopeCheck();
+                //SlopeCheck();
 
                 // delete gravity while not airborne
-                rb.gravityScale = 0;
+                //rb.gravityScale = 0;
 
-                if (isGrounded && !isOnSlope)
+                if (isGrounded)
                 {
                     // not max speed
                     if (rb.linearVelocity.magnitude <= maxSpeed)
@@ -77,6 +77,7 @@ public class Player : MonoBehaviour
                         rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
                     }
                 }
+                // deprecated
                 else if (isGrounded && isOnSlope)
                 {
                     // not max speed
@@ -106,11 +107,6 @@ public class Player : MonoBehaviour
                     {
                         rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
                     }
-                }
-                else
-                {
-                    // if in air, apply gravity
-                    rb.gravityScale = gravityScale;
                 }
                 
                 break;
@@ -205,7 +201,7 @@ public class Player : MonoBehaviour
     {
         // place landmine at end of turn
         yield return new WaitForSeconds(1);
-        Vector2 landminePosition = new Vector2(transform.position.x, transform.position.y - transform.localScale.y / 2);
+        Vector2 landminePosition = new Vector2(transform.position.x, groundCheck.position.y);
         Instantiate(landminePrefab, landminePosition, Quaternion.identity);
         landminePrefab.GetComponent<Landmine>().timer = actionFloat;
     }
