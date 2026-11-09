@@ -43,7 +43,6 @@ public class GraphicsMenu : MonoBehaviour
         int count = 0;
         foreach (Resolution resolution in Screen.resolutions)
         {
-            
             if (resolution.width == PlayerPrefs.GetInt("ResolutionWidth") && resolution.height == PlayerPrefs.GetInt("ResolutionHeight"))
             {
                 selectedResolution = count;

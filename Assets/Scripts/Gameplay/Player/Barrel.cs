@@ -23,12 +23,14 @@ public class Barrel : MonoBehaviour
     [SerializeField] private Vector2 currentPos;
     [SerializeField] public Vector3 sprayEndPoint;
     [SerializeField] private float shieldHitReboundStrength = 3f;
-    
+
+    private float startX;
 
     private void Start()
     {
         playerRef = GameManager.Instance.turnManager.playerRef.GetComponent<Rigidbody2D>();
         originSize = transform.localScale;
+        startX = transform.localPosition.x;
     }
 
     private void FixedUpdate()
@@ -84,11 +86,11 @@ public class Barrel : MonoBehaviour
     {
         // first, take the size and modify it by player's speed, divided by scaling divider
         currentSize = Mathf.Clamp(playerRef.linearVelocity.magnitude / scalingDivider, minSize, maxSize);
-        transform.localScale = new Vector3(originSize.x, originSize.y * currentSize, originSize.z);
+        transform.localScale = new Vector3(originSize.x * currentSize, originSize.y, originSize.z);
         
         // then, take midway point of y scale to find anchor point
-        float anchorY = transform.localScale.y / 2;
-        transform.localPosition = new Vector3(0, anchorY, 0);
+        float anchorX = transform.localScale.x / 2;
+        transform.localPosition = new Vector3(anchorX + startX, 0, 0);
     }
 
     public void ReadyFire(Enemy.EnemyAction action, float time)

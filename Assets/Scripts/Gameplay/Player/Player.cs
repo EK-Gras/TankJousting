@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 {
     [Header("References")]
     public Rigidbody2D rb;
-    private CapsuleCollider2D capsuleCollider;
     
     [SerializeField] GameObject landminePrefab;
     [SerializeField] public BarrelPivot barrelPivot;
@@ -28,7 +27,6 @@ public class Player : MonoBehaviour
     private float actionFloat;
     private float slopeDownAngle;
     private float slopeDownAngleOld;
-    private float slopeSideAngle;
 
     private Vector2 slopeNormalPerp;
     
@@ -37,14 +35,10 @@ public class Player : MonoBehaviour
     public bool isOnSlope;
     public bool rightSlope;
     
-    private Vector2 colliderSize;
-    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        capsuleCollider = GetComponent<CapsuleCollider2D>();
-        colliderSize = capsuleCollider.size;
         groundLayer = LayerMask.GetMask("Ground");
     }
 
@@ -133,7 +127,7 @@ public class Player : MonoBehaviour
 
     private void SlopeCheck()
     {
-        Vector2 checkPos = transform.position - new Vector3(0, colliderSize.y / 3, 0);
+        Vector2 checkPos = new Vector2(groundCheck.position.x, groundCheck.position.y + 1);
         
         HorizontalSlopeCheck(checkPos);
         VerticalSlopeCheck(checkPos);
@@ -148,18 +142,15 @@ public class Player : MonoBehaviour
         {
             isOnSlope = true;
             rightSlope = true;
-            slopeSideAngle = Vector2.Angle(frontCheck.normal, Vector2.up);
         }
         else if (backCheck)
         {
             isOnSlope = true;
             rightSlope = false;
-            slopeSideAngle = Vector2.Angle(backCheck.normal, Vector2.up);
         }
         else
         {
             isOnSlope = false;
-            slopeSideAngle = 0.0f;
         }
     }
 
